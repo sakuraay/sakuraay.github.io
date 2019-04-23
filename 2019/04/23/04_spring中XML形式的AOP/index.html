@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring�л���XML��AOP������1. ��֪ͨbean����Spring������ 2. ʹ��aop:config��ǩ������ʼAOP������ 3. ʹ��aop:aspect��ǩ������ʼ��������     id����:�������ṩһ��Ψһ��ʶ     ref����:��ָ��֪ͨ��bean��id 4. ��aop:aspect��ǩ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/04_spring中XML形式的AOP/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring�л���XML��AOP������1. ��֪ͨbean����Spring������ 2. ʹ��aop:config��ǩ������ʼAOP������ 3. ʹ��aop:aspect��ǩ������ʼ��������     id����:�������ṩһ��Ψһ��ʶ     ref����:��ָ��֪ͨ��bean��id 4. ��aop:aspect��ǩ">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-28T03:18:38.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Spring�л���XML��AOP������1. ��֪ͨbean����Spring������ 2. ʹ��aop:config��ǩ������ʼAOP������ 3. ʹ��aop:aspect��ǩ������ʼ��������     id����:�������ṩһ��Ψһ��ʶ     ref����:��ָ��֪ͨ��bean��id 4. ��aop:aspect��ǩ">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-04_spring中XML形式的AOP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/23/04_spring中XML形式的AOP/" class="article-date">
+  <time datetime="2019-04-23T08:41:10.415Z" itemprop="datePublished">2019-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring�л���XML��AOP������"><a href="#Spring�л���XML��AOP������" class="headerlink" title="Spring�л���XML��AOP������"></a>Spring�л���XML��AOP������</h2><pre><code>1. ��֪ͨbean����Spring������
+2. ʹ��aop:config��ǩ������ʼAOP������
+3. ʹ��aop:aspect��ǩ������ʼ��������
+    id����:�������ṩһ��Ψһ��ʶ
+    ref����:��ָ��֪ͨ��bean��id
+4. ��aop:aspect��ǩ���ڲ�ʹ�ö��õı�ǩ������֪ͨ������
+    ǰ��֪ͨ:    aop:before(��ʾ����ǰ��֪ͨ)
+            method����:����ָ�������ĸ�������ǰ��֪ͨ
+            pointcut����:����ָ���������ʽ,�ñ��ʽ�ĺ���ָ���Ƕ�ҵ������Щ������ǿ
+    �������ʽ��д��:
+        �ؼ���: execution(���ʽ)
+        ���ʽ:
+            �������η�  ����ֵ  ����.����...����.������(�����б�)
+        ��׼���ʽ��д��:
+            execution(public void com.qin.service.impl.AccountServiceImpl.xxx(..))
+        �������η�����ʡ��
+            void com.itheima.service.impl.AccountServiceImpl.saveAccount()
+        ����ֵ����ʹ��ͨ�������ʾ���ⷵ��ֵ
+            * com.itheima.service.impl.AccountServiceImpl.saveAccount()
+        ��������ʹ��ͨ�������ʾ������������м�����������Ҫд����*.
+            * *.*.*.*.AccountServiceImpl.saveAccount())
+        ��������ʹ��..��ʾ��ǰ�������Ӱ�
+            * *..AccountServiceImpl.saveAccount()
+        �����ͷ�����������ʹ��*��ʵ��ͨ��
+            * *..*.*()
+        �����б�
+            ����ֱ��д�������ͣ�
+            ��������ֱ��д����           int
+            ��������д����.�����ķ�ʽ   java.lang.String
+            ����ʹ��ͨ�����ʾ�������ͣ����Ǳ����в���
+            ����ʹ��..��ʾ���޲������ɣ��в�����������������
+        ȫͨ��д����
+            * *..*.*(..)
+
+        ʵ�ʿ������������ʽ��ͨ��д����
+            �е�ҵ���ʵ�����µ����з���
+            * com.itheima.service.impl.*.*(..)
+
+
+5. ��
+    &lt;!-- ����Ŀ����--&gt;
+    &lt;bean id=&quot;accountService&quot; class=&quot;com.itheima.service.impl.AccountServiceImpl&quot;&gt;&lt;/bean&gt;
+
+
+    &lt;!-- ����֪ͨ�� --&gt;
+    &lt;bean id=&quot;logger&quot; class=&quot;com.itheima.utils.Logger&quot;&gt;&lt;/bean&gt;
+
+    &lt;!--����AOP--&gt;
+    &lt;aop:config&gt;
+    &lt;!-- �����������ʽ id��������ָ�����ʽ��Ψһ��ʶ��expression��������ָ�����ʽ����
+          �˱�ǩд��aop:aspect��ǩ�ڲ�ֻ�ܵ�ǰ����ʹ�á�
+          ��������д��aop:aspect���棬��ʱ�ͱ���������������
+      --&gt;
+    &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(* com.itheima.service.impl.*.*(..))&quot;&gt;&lt;/aop:pointcut&gt;
+
+
+
+    &lt;!--�������� --&gt;
+    &lt;aop:aspect id=&quot;logAdvice&quot; ref=&quot;logger&quot;&gt;
+        &lt;!-- ����ǰ��֪ͨ��������㷽��ִ��֮ǰִ��--&gt;
+        &lt;aop:before method=&quot;beforePrintLog&quot; pointcut-ref=&quot;pt1&quot;&gt;&lt;/aop:before&gt;
+
+        &lt;!-- ���ú���֪ͨ��������㷽������ִ��֮��ֵ�������쳣֪ͨ��Զֻ��ִ��һ��--&gt;
+        &lt;aop:after-returning method=&quot;afterReturningPrintLog&quot; pointcut-ref=&quot;pt1&quot;
+                 returning=&quot;val&quot;&gt;&lt;/aop:after-returning&gt;
+
+        &lt;!-- �����쳣֪ͨ��������㷽��ִ�в����쳣֮��ִ�С����ͺ���֪ͨ��Զֻ��ִ��һ��--&gt;
+        &lt;aop:after-throwing method=&quot;afterThrowingPrintLog&quot; pointcut-ref=&quot;pt1&quot; throwing=&quot;ex&quot;&gt;&lt;/aop:after-throwing&gt;
+
+        &lt;!-- ��������֪ͨ����������㷽���Ƿ�����ִ���������������ִ��--&gt;
+        &lt;aop:after method=&quot;afterPrintLog&quot; pointcut-ref=&quot;pt1&quot;&gt;&lt;/aop:after&gt;
+
+        &lt;!-- ���û���֪ͨ --&gt;
+        &lt;aop:around method=&quot;aroundPringLog&quot; pointcut-ref=&quot;pt1&quot;&gt;&lt;/aop:around&gt;
+    &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/04_spring中XML形式的AOP/" data-id="cjutkggc70003pgi9zugbowwi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/23/05_spring中注解形式的AOP/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/23/03_spring抽取配置文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/23/12_ThreadLocal/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/11_Spring事务控制/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/10_JdbcDaoSupport/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/09_Spring中环绕通知/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/08_动态代理以及Spring的AOP/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

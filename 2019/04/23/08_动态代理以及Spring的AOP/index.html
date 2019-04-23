@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="��̬�����ص�:      �ֽ��������洴��,��������� ����:     ���޸�Դ��Ļ����϶Է�����ǿ ����:     1. ���ڽӿڵĶ�̬����         �漰����:             Proxy         �ṩ��:             jdk�ٷ�         ��δ����������:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="��̬�����ص�:      �ֽ��������洴��,��������� ����:     ���޸�Դ��Ļ����϶Է�����ǿ ����:     1. ���ڽӿڵĶ�̬����         �漰����:             Proxy         �ṩ��:             jdk�ٷ�         ��δ����������:">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-28T03:18:41.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="��̬�����ص�:      �ֽ��������洴��,��������� ����:     ���޸�Դ��Ļ����϶Է�����ǿ ����:     1. ���ڽӿڵĶ�̬����         �漰����:             Proxy         �ṩ��:             jdk�ٷ�         ��δ����������:">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-08_动态代理以及Spring的AOP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/23/08_动态代理以及Spring的AOP/" class="article-date">
+  <time datetime="2019-04-23T08:41:10.473Z" itemprop="datePublished">2019-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="��̬����"><a href="#��̬����" class="headerlink" title="��̬����"></a>��̬����</h2><pre><code>�ص�: 
+    �ֽ��������洴��,���������
+����:
+    ���޸�Դ��Ļ����϶Է�����ǿ
+����:
+    1. ���ڽӿڵĶ�̬����
+        �漰����:
+            Proxy
+        �ṩ��:
+            jdk�ٷ�
+        ��δ����������:
+            ʹ��Proxy���е�newProxyInstance����
+        ������������Ҫ��:
+            �������������ʵ��һ���ӿ�,���û������ʹ��
+        newProxyInstance�����Ĳ���:
+            ClassLoader:�������
+                �������ڼ��ش�������ֽ����,�ͱ��������ʹ����ͬ���������,�̶�д��
+            Class[]:�ֽ�������
+                ���������ô������ͱ������������ͬ�ķ���,�̶�д��
+            InvocationHandler:�����ṩ��ǿ�Ĵ���
+                ��������������д��δ���,����һ�㶼��дһ���ýӿڵ�ʵ����,ͨ����һ�������ڲ���(���Ǳ����)
+                �˽ӿڵ�ʵ���඼��˭��˭д
+
+        *���ڵ�����:�����ǵ���û��ʵ���κεĽӿڵ�ʱ���ǲ�����ʹ�õ�
+
+        �������ִ�з���,��ʵ���Ǵ��汻�������ִ�з���
+
+        ���������ʵ�ֽӿ�
+        ���ɴ������
+        �������.���������ķ���
+
+    2. ��������Ķ�̬����(cglib)
+
+        �漰����:
+            Enhancer
+        �ṩ��:
+            ������cglib��
+        ��δ����������:
+            ʹ��Enhancer���е�create����
+        ������������Ҫ��:
+            ��������಻��������,���ܱ�final����
+        create�����Ĳ���:
+            Class:�ֽ���
+                ��������ָ�������������ֽ���
+            Callback:�����ṩ��ǿ�Ĵ���
+                ��������������д��δ���,����һ�㶼��дһ���ýӿڵ�ʵ����,ͨ����һ�������ڲ���(���Ǳ����)
+                �˽ӿڵ�ʵ���඼��˭��˭д
+                ����һ��д�Ķ��Ǹýӿڵ��ӽӿ�ʵ����:MethodIntercepor
+</code></pre><h2 id="Spring�е�AOP"><a href="#Spring�е�AOP" class="headerlink" title="Spring�е�AOP"></a>Spring�е�AOP</h2><pre><code>����:
+    AOP��ȫ���� Aspect Oriented Programming �������������̡�    
+    �򵥵�˵�����ǰ����ǳ����ظ��Ĵ����ȡ����������Ҫִ�е�ʱ��ʹ�ö�̬����ļ������ڲ��޸�Դ���
+    �����ϣ������ǵ����з���������ǿ
+�����Լ�����:
+    ���ã�
+        �ڳ��������ڼ䣬���޸�Դ������з���������ǿ��
+    ���ƣ�
+        �����ظ�����
+        ��߿���Ч��
+        ά������
+ʵ�ַ�ʽ:
+    ʹ�ö�̬������
+AOP�������:
+
+    ���ӵ�:
+        Ŀ���������з���(���е�����㶼�����ӵ�)
+    �����:
+        ����ǿ�Ķ��������
+    ��ǿ/֪ͨ:
+        ������ǿ�Ĵ����(�����ǳ�ȡ��������)
+    ����:
+        ��һ�������֪ͨ�ڲ��޸�������ǰ����, Introduction ������������Ϊ�ද̬�����һЩ������ Field��
+    Target:
+        ������Ķ���
+    ֯��:
+        ��ָ����ǿӦ�õ�Ŀ������������µĴ������Ĺ��̡�
+        spring ���ö�̬����֯�룬�� AspectJ ���ñ�����֯�����װ����֯�롣
+    ����(Proxy):
+        һ���౻AOP֯����ǿ��,�����Ľ��������
+
+    ����:
+        �������֪ͨ�Ľ��
+</code></pre><h2 id="Spring��AOP�����д���ʽ��ѡ��"><a href="#Spring��AOP�����д���ʽ��ѡ��" class="headerlink" title="Spring��AOP�����д���ʽ��ѡ��"></a>Spring��AOP�����д���ʽ��ѡ��</h2><pre><code>proxy-target-class
+    Ĭ��false: �Զ�ѡ��  
+    true: ʹ��cglib����
+
+1. ����XML��
+    &lt;aop:config proxy-target-class=&quot;true&quot;&gt;
+    .....
+    &lt;/aop:config&gt;
+
+2. ����ע��
+     &lt;aop:aspectj-autoproxy proxy-target-class=&quot;true&quot;&gt;&lt;/aop:aspectj-autoproxy&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/" data-id="cjutkggcb0006pgi9obrm1fi0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/23/09_Spring中环绕通知/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/23/07_spring整合junit/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/23/12_ThreadLocal/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/11_Spring事务控制/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/10_JdbcDaoSupport/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/09_Spring中环绕通知/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/08_动态代理以及Spring的AOP/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

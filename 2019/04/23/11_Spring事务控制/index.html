@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring的事务概述:     1. JavaEE 体系进行分层开发，事务处理位于业务层，Spring 提供了分层设计 业务层的事务处理解决方案。     2. spring 框架为我们提供了一组事务控制的接口。具体在后面的第二小节介绍。这组接口是在         spring-tx-5.0.2.RELEASE.jar 中。     3. spring 的事务控制都是基于 AOP 的，它既可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/11_Spring事务控制/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring的事务概述:     1. JavaEE 体系进行分层开发，事务处理位于业务层，Spring 提供了分层设计 业务层的事务处理解决方案。     2. spring 框架为我们提供了一组事务控制的接口。具体在后面的第二小节介绍。这组接口是在         spring-tx-5.0.2.RELEASE.jar 中。     3. spring 的事务控制都是基于 AOP 的，它既可以">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-28T07:13:47.971Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Spring的事务概述:     1. JavaEE 体系进行分层开发，事务处理位于业务层，Spring 提供了分层设计 业务层的事务处理解决方案。     2. spring 框架为我们提供了一组事务控制的接口。具体在后面的第二小节介绍。这组接口是在         spring-tx-5.0.2.RELEASE.jar 中。     3. spring 的事务控制都是基于 AOP 的，它既可以">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-11_Spring事务控制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/23/11_Spring事务控制/" class="article-date">
+  <time datetime="2019-04-23T08:41:10.503Z" itemprop="datePublished">2019-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring的事务"><a href="#Spring的事务" class="headerlink" title="Spring的事务"></a>Spring的事务</h2><pre><code>概述:
+    1. JavaEE 体系进行分层开发，事务处理位于业务层，Spring 提供了分层设计 业务层的事务处理解决方案。
+    2. spring 框架为我们提供了一组事务控制的接口。具体在后面的第二小节介绍。这组接口是在
+        spring-tx-5.0.2.RELEASE.jar 中。
+    3. spring 的事务控制都是基于 AOP 的，它既可以使用编程的方式实现，也可以使用配置的方式实现。
+
+
+
+事务控制的API
+    1. PlatformTransactionManager:
+        此接口是spring的事务管理器,它提供了我们常用的操作事务的方法
+        * 获取事务状态信息
+            TransactionStatus getTransaction(TransactionDefinition definition)
+        * 提交事务
+            void commit(TransactionStatus status)
+        * 回滚事务
+            void rollback(TransactionStatus status)
+
+        而我们都是使用它的实现类即真正管理事务的对象
+        org.springframework.jdbc.datasource.DataSourceTransactionManager 使用 SpringJDBC 或 iBatis 进行持久化数据时使用
+        org.springframework.orm.hibernate5.HibernateTransactionManager     使用Hibernate 版本进行持久化数据时使用
+
+    2. TransactionDefinition
+        它是事务的定义信息对象，里面有如下方法:
+        * 获取事务对象名称:    String getName()
+        * 获取事务隔离级别        int getIsolationLevel()
+        * 获取事务传播行为        int getPropagationBehavior()
+        * 获取事务超时时间        int getTimeout()
+        * 获取事务是否只读        boolean isReadOnly()
+
+    3. 事务的隔离级别
+        isolation_default:使用数据库默认的事务隔离级别
+        isolation_read_uncommitted:允许读取尚未提交的修改，可能导致脏读、幻读和不可重复读
+        isolation_read_committed :允许从已经提交的事务读取，可防止脏读、但幻读，不可重复读仍然有可能发生
+        isolation_repeatable_read:对相同字段的多次读取的结果是一致的，除非数据被当前事务自生修改。可防止脏读和不可重复读，但幻读仍有可能发生
+        isolation_serializable :完全服从acid隔离原则，确保不发生脏读、不可重复读、和幻读，但执行效率最低。
+
+    4. 事务的传播行为
+        REQUIRED:如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。一般的选择（默认值）
+        SUPPORTS:支持当前事务，如果当前没有事务，就以非事务方式执行（没有事务）
+        MANDATORY：使用当前的事务，如果当前没有事务，就抛出异常
+        REQUERS_NEW:新建事务，如果当前在事务中，把当前事务挂起。
+        NOT_SUPPORTED:以非事务方式执行操作，如果当前存在事务，就把当前事务挂起
+        NEVER:以非事务方式运行，如果当前存在事务，抛出异常
+        NESTED:如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行 REQUIRED 类似的操作
+    5. 超时时间
+        默认值时-1,没有超时限制,如果有,以秒为单位设置
+    6. 只读
+        建议查询设置为只读
+    7. TransactionStatus
+        此接口提供的是事务具体的运行状态    
+        * 刷新事务                void flush()
+        * 获取是否存在存储点        boolean hasSavepoint()
+        * 获取事务是否完成            boolean isCompleted()
+        * 获取事务是否是新的事务    boolean isNewTransaction()
+        * 获取事务是否回滚            boolean isRollbackOnly()
+        * 设置事务回滚                void setRollbackOnly()
+</code></pre><h2 id="声明式事务的使用"><a href="#声明式事务的使用" class="headerlink" title="声明式事务的使用"></a>声明式事务的使用</h2><pre><code>1. 基于xml:
+    1. 导入依赖jar
+        spring-jdbc  spring-tx
+    2. 创建spring配置文件以及导入约束
+        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+        xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+        xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd&quot;&gt;
+        &lt;/beans&gt;
+    3. 使用spring的ioc管理对象
+        配置业务层以及持久层的对象
+    4. 具体事务的配置
+        1. 配置事务管理器
+            &lt;!--配置一个事务管理器--&gt;
+            &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+               &lt;!--注入一个DataSource--&gt;
+                &lt;property name=&quot;dataSource&quot; ref=&quot;ds&quot; &gt;&lt;/property&gt;
+            &lt;/bean&gt; 
+        2. 配置一个通知类引用事务管理器
+            &lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;
+                &lt;tx:attributes&gt;
+                    &lt;!--配置所有的方法开启事务并设置只读false,传播行为REQUIRED--&gt;
+                    &lt;tx:method name=&quot;*&quot; read-only=&quot;false&quot; propagation=&quot;REQUIRED&quot;/&gt;
+                    &lt;!--配置以find开头的方法开启事务并设置只读,传播行为SUPPORTS--&gt;
+                    &lt;tx:method name=&quot;find*&quot; read-only=&quot;true&quot; propagation=&quot;SUPPORTS&quot;&gt;&lt;/tx:method&gt;
+                &lt;/tx:attributes&gt;
+            &lt;/tx:advice&gt;
+        3. 配置切入点以及事务与切入点的对应关系
+            &lt;aop:config&gt;
+                &lt;aop:pointcut id=&quot;pt&quot; expression=&quot;execution(* com.qin.service.impl.*.*(..))&quot;&gt;&lt;/aop:pointcut&gt;
+                &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut-ref=&quot;pt&quot; &gt;&lt;/aop:advisor&gt;
+            &lt;/aop:config&gt;
+2. 基于注解:
+    1. 基本的对象配置同xml(只配置一个事务管理器)
+    2. 需要开启对注解事务的支持
+        &lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;&gt;&lt;/tx:annotation-driven&gt;        
+    3. 在需要开启事务的类/方法上
+        1. @Transactional(readOnly = true,propagation = Propagation.SUPPORTS) 
+        2. @Transactional(readOnly = false,propagation = Propagation.REQUIRED)
+    * 注:当类上配置了事务,类里面的方法也配置了,最终会按方法上的注解生效
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/11_Spring事务控制/" data-id="cjutkggcm000bpgi98gt8p56d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/23/12_ThreadLocal/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/23/10_JdbcDaoSupport/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/23/12_ThreadLocal/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/11_Spring事务控制/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/10_JdbcDaoSupport/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/09_Spring中环绕通知/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/08_动态代理以及Spring的AOP/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

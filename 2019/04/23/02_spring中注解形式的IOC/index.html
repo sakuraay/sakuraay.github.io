@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring的注解开发* IOC在XML的配置:&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.qin.service.impl.AccountService&amp;quot; scope=&amp;quot;&amp;quot;         init-method=&amp;quot;&amp;quot; destory-method=&amp;quot;&amp;quot;&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/02_spring中注解形式的IOC/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring的注解开发* IOC在XML的配置:&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.qin.service.impl.AccountService&amp;quot; scope=&amp;quot;&amp;quot;         init-method=&amp;quot;&amp;quot; destory-method=&amp;quot;&amp;quot;&amp;gt;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-28T03:35:16.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Spring的注解开发* IOC在XML的配置:&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.qin.service.impl.AccountService&amp;quot; scope=&amp;quot;&amp;quot;         init-method=&amp;quot;&amp;quot; destory-method=&amp;quot;&amp;quot;&amp;gt;">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-02_spring中注解形式的IOC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/23/02_spring中注解形式的IOC/" class="article-date">
+  <time datetime="2019-04-23T08:41:10.358Z" itemprop="datePublished">2019-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring的注解开发"><a href="#Spring的注解开发" class="headerlink" title="Spring的注解开发"></a>Spring的注解开发</h2><pre><code>* IOC在XML的配置:&lt;bean id=&quot;accountService&quot; class=&quot;com.qin.service.impl.AccountService&quot; scope=&quot;&quot;
+        init-method=&quot;&quot; destory-method=&quot;&quot;&gt;
+        &lt;property name=&quot;&quot; value=&quot;&quot; |ref=&quot;&quot;&gt;&lt;/property&gt;
+         &lt;/bean&gt;
+
+* 注解分类:
+    1. 用于创建对象的
+        它们的作用就和xml配置中编写一个&lt;bean&gt;标签实现的功能是一样的
+
+        @Component:
+            作用:
+                用于把当前类对象存入Spring容器中
+            属性:
+                value:用于指定bean中的id.当我们不写时,他的默认值是当前类名的,且首字母小写
+
+        @Controller:一般用在表现层
+        @Service:一般用在业务层
+        @Repository:一般用在持久层
+        以上三个注解的作用和属性与Component是一模一样的
+        他们三个是spring为我们提供明确的三层使用的注解,使我们的三层对象更加清晰
+
+        在xml文件的配置:
+            &lt;context:component-scan base-package=&quot;com.qin&quot;&gt;&lt;/context:component-scan&gt;
+            作用:告知spring在创建容器时要扫描的包,配置所需要的标签不是beans约束中,而是在context
+            的名称空间和约束中
+
+            约束配置:
+            &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+            &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+                xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+                xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+                xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+    2. 用于注入数据的
+        它们的作用就和在xml配置文件中的bean标签中写一个&lt;property&gt;标签的作用是一样的
+
+        @Autowired
+            作用:(自动按照类型注入)    
+                如果ioc容器中有唯一的一个bean对象类型和要注入的变量类型匹配,就可以注入成功
+                如果ioc容器中没有任何bean类型和要注入的变量类型一致,将会注入失败
+                如果ioc容器中有多个bean类型和要注入的变量类型一致,会先根据类型寻找,再根据变量名找
+            出现位置:
+                变量上,方法上(在set方法上也可以使用);
+            细节:
+                在使用注解注入时,set方法就不是必须的
+        @Qualifier
+            * 配合@Autowired使用
+            * 也可以存在于参数上,配合指定构造中要传递的bean对象
+            作用:
+                在按照类中注入的基础之上再按照名称注入.他在给类成员注入时不能单独使用,但是在给方法参数注入时可以
+            属性:
+                value:用于指定注入bean的id
+        @Resource
+            * jdk1.9不能使用
+            作用:
+                直接按照bean的id注入,它可以单独使用
+            属性:
+                name:用于指定bean 的id
+
+        * 以上三个注入都只能注入其他bean类型,而基本类型和string类型无法使用上述注解实现,集合类型也可以用Autowired实现
+
+        @Value
+            作用:
+                用于注入基本类型和string类型的数据
+            属性:
+                value:用于指定数据的值.他可以使用spring和spEL(也就是spring的el表达式)
+                spEL的写法:#{表达式}
+
+                #{}:去容器中找id为花括号内容对应的值
+                ${}:去配置文件中读取花括号对应的值
+    3. 用于改变作用范围的
+        它们的作用就和在xml配置文件中的bean标签中使用scope属性实现的功能是一样的
+
+        @Scope
+            作用:
+                用于指定bean的作用范围
+            属性:
+                value:指定范围的取值.常用取值:singleton prototype
+
+    4. 和生命周期相关
+        它们的作用就和在xml配置文件中的bean标签中使用init-method和destory-method的作用是一样的
+
+        @PreDestroy
+            作用:
+                用于指定销毁方法
+        @PostConstruct
+            作用: 
+                用于指定初始化方法
+
+
+* spring的新注解(可以使用纯注解的形式开发)
+    * 创建一个类.替换核心配置文件
+    @Configuration
+        作用:
+            指定当前类是一个配置类
+        细节:
+            当配置类作为AnnotationConfigApplicationContext对象创建的参数时,可以不写此注解
+            但不是任何时候都可以不写(把注解文件分开写,另一个没有读的配置文件必须写)
+    @ConponentScan
+        作用:
+            用于通过注解指定spring在创建容器时要扫面的包
+        属性:
+            value:它和basePackage的作用是一样的,都是用于指定创建容器时要扫面的包
+            我们使用次注解就等同于在xml中配置了:
+            &lt;context:component-scan base-package=&quot;com.qin&quot;&gt;&lt;/context:component-scan&gt;
+
+
+    @Bean
+        作用:
+            用于把当前方法的的返回值作为bean对象存入spring的ioc容器中
+        属性:
+            name:用于指定bean的id,当不写时,默认值是当前方法的名称
+        细节:
+            当我们使用注解来配置方法时,如果方法有参数,spring框架会去容器中查找有没有可用的bean对象,查找的方式和
+            @Autowired注解的作用一样的
+
+    @Import
+        作用:
+            用于导入其他的配置类
+        属性:
+            value:用于指定其他配置类的字节码文件
+            当我们使用import的注解之后,有import注解的类就是父配置类,而导入的都是子配置类
+
+    @PropertySource
+        作用:
+            用于指定properties文件的位置
+        属性:
+            value:指定文件的名称以及文件的路径
+                关键字:classpath,表示类路径下
+        例子:
+            @PropertySource(&quot;classpath:JdbcConfig.properties&quot;)
+
+
+    *没有xml文件时测试就要修改ApplicationContext的创建方式
+    ApplicationContext ac = new AnnotationConfigApplicationContext(&quot;被@Configuration注解过的类&quot;.class)
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/02_spring中注解形式的IOC/" data-id="cjutkggc50002pgi9brxoncf8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/23/03_spring抽取配置文件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/23/01_spring中XML形式的IOC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/23/12_ThreadLocal/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/11_Spring事务控制/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/10_JdbcDaoSupport/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/09_Spring中环绕通知/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/08_动态代理以及Spring的AOP/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

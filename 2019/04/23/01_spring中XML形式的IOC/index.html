@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring引入* spring 是什么?      Spring是分层的 Java SE/EE应用 full-stack 轻量级开源框架，以 IoC（Inverse Of Control：     反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核，提供了展现层 Spring     MVC 和持久层 Spring JDBC 以及业务层事务管理等众">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/01_spring中XML形式的IOC/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring引入* spring 是什么?      Spring是分层的 Java SE/EE应用 full-stack 轻量级开源框架，以 IoC（Inverse Of Control：     反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核，提供了展现层 Spring     MVC 和持久层 Spring JDBC 以及业务层事务管理等众">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-28T03:36:08.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Spring引入* spring 是什么?      Spring是分层的 Java SE/EE应用 full-stack 轻量级开源框架，以 IoC（Inverse Of Control：     反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核，提供了展现层 Spring     MVC 和持久层 Spring JDBC 以及业务层事务管理等众">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-01_spring中XML形式的IOC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/23/01_spring中XML形式的IOC/" class="article-date">
+  <time datetime="2019-04-23T08:41:10.344Z" itemprop="datePublished">2019-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring引入"><a href="#Spring引入" class="headerlink" title="Spring引入"></a>Spring引入</h2><pre><code>* spring 是什么?
+
+    Spring是分层的 Java SE/EE应用 full-stack 轻量级开源框架，以 IoC（Inverse Of Control：
+    反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核，提供了展现层 Spring
+    MVC 和持久层 Spring JDBC 以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多
+    著名的第三方框架和类库，逐渐成为使用最多的Java EE 企业应用开源框架。
+
+* 程序的耦合
+    耦合:程序之间的依赖关系
+        包括了类与类之间的依赖,方法之间的依赖
+
+    解耦:降低程序之间的依赖关系,提升程序的灵活性与可扩展性
+    实际开发中:应该做到编译期不依赖,运行时才会依赖
+
+    解耦的思路:
+        第一步:使用反射来创建对象,从而避免使用new关键字
+        第二步:通过读取配置文件来获取要创建的对象全限定类名
+
+* 三层架构代码中存在的问题    
+    业务层调用持久层的时候的new dao的接口
+    在表现层调用业务层的时候new service的接口
+
+    解决办法: 使用工厂模式解耦(一个创建bean对象的工厂)
+        Bean
+            1. Bean:在计算机英语中,有可重用组件的含义
+            2. JavaBean:用java语言编写的可重用组件
+                JavaBean &gt; 实体类
+            3. POJO（Plain Ordinary Java Object）即普通Java类
+            4. 可以认为POJO就一个不带方法而单纯承载数据实体Bean；EJB是一个包含了POJO的超集、
+                包含POJO之外的，具有方法、实现、功能这一群组件。
+        方法:
+            1. 一个配置文件配置service与dao的内容(xml/properties)
+            2. 通过读取配置文件来获取要创建的对象全限定类名,反射加载
+            3.优化:使用单例
+</code></pre><h2 id="Spring的IOC-Inversion-Of-Control"><a href="#Spring的IOC-Inversion-Of-Control" class="headerlink" title="Spring的IOC(Inversion Of Control)"></a>Spring的IOC(Inversion Of Control)</h2><pre><code>* IOC:控制反转
+    简单理解:让spring来控制对象
+    一般的pojo或者domain实体类是不会让spring去管理的
+    通常来说,我们自己写的类,使用注解,别人写的类(引入的类)一般使用xml
+
+
+* 入门案例:
+    1. 导入依赖
+    2. 创建配置文件,导入约束,并写入相关的bean标签(配置id与class)
+    3. 从容器中获取容器对象
+        3.1 先获取容器
+        ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;配置文件&quot;)
+        3.2 从容器中根据id或者name获取bean对象
+        User user = ac.getBean(&quot;user&quot;, User.class);
+        System.out.println(user);//User{userName=&apos;null&apos;, age=null, birthday=null}
+
+
+* ApplicationContext的三个常用的实现类
+    ClassPathXmlApplicationContext:它可以加载类路径下的配置文的件,要求配置文件必须在类路径下,不在就加载不了    (xml常用)
+    FileSystemXmlApplicationContext:它可以加载磁盘任意路径下的配置文件                    (必须有访问权限)
+    AnnotationConfigApplicationContext:它是用于读取注解的配置                        (注解时使用)
+
+* 核心容器的两个接口引发出的问题
+    ApplicationContext:(单例对象试用),多使用此接口
+        它在构建核心容器的时候,创建对象采取的是立即加载的方式,也就是说,只要一读取完配置文件就马上
+        就创建配置文件中的配置的对象
+    BeanFactory:(多例对象适用)
+        它在构建核心容器的时候,采取的策略是延迟加载的方式,也就是说,什么时候根据id获取对象了,什么时候才会
+        真正的创建对象
+
+* Spring对bean的管理细节
+    1. 创建bean的三种方式:
+
+        1.1 第一种方式:使用默认构造函数创建
+            在spring的配置文件中使用bean标签,配置id与class属性之后,且没有其他属性和标签时
+            采用的就是默认构造函数创建bean对象,测试如果类中没有默认构造函数,则对象无法创建
+            &lt;bean id=&quot;service&quot; class=&quot;com.qin.service.impl.IUserServiceImpl&quot;&gt;&lt;/bean&gt;
+        1.2 第二种方式:使用普通工厂中的方法来创建对象(使用某个类中的方法创建对象,并存入spring容器)
+            &lt;bean id=&quot;instanceFactory&quot; class=&quot;com.qin.factory.instanceFactory&quot;&gt;&lt;/bean&gt;(要先有对象才能调用方法)
+            &lt;bean id=&quot;serviceFactory&quot; class=&quot;com.qin.factory.instanceFactory&quot; factory-method=&quot;getAccount&quot;&gt;
+            &lt;/bean&gt;
+        1.3 第三种方式:使用工厂中的静态方法创建对象(使用某个类中的静态方法创建对象,并存入spring容器)
+            &lt;bean id=&quot;serviceFactory&quot; class=&quot;com.qin.factory.StaticFactory&quot; factory-method=&quot;getAccount&quot;&gt;
+            &lt;/bean&gt;
+            静态方法是不需要对象的,是可以通过全类名调用的,所以不需要对象
+
+    2. bean的作用范围
+            bean标签的scope属性
+                作用:用于指定bean 的作用范围
+                取值:
+                    singleton:单例的(默认值)
+                    prototype:多例的
+                    request:作用于wen应用的请求范围
+                    session:作用于wen应用的会话范围
+                    global-session:作用于集群环境的会话范围(全局会话范围),当不是集群的时候,相当于session
+    3. bean对象的生命周期
+        单例对象:
+            出生:当容器创建时候对象出生
+            存在:只要容器在,对象就一直活着
+            死亡:容器销毁,对象消亡
+            总结:单例对象的生命周期和容器相同
+        多例对象:
+            出生:当使用对象时,spring框架为我们创建
+            存在:对象还在使用的过程中就一直存活
+            死亡:当对象长时间不用,且没有别的对象引用时,由java的垃圾回收器回收
+</code></pre><h2 id="Spring依赖注入-DI-依赖关系的维护"><a href="#Spring依赖注入-DI-依赖关系的维护" class="headerlink" title="Spring依赖注入:DI(依赖关系的维护)"></a>Spring依赖注入:DI(依赖关系的维护)</h2><pre><code>* 能注入的数据:三类
+        1. 基本类型和string :
+        2. 其他bean类型(在配置文件中或者注解配置过的bean)
+        3. 复杂类型/集合类型
+* 注入的方式:有三种
+        1. 使用构造函数提供(不常用)
+            使用的标签:constructor-arg
+            标签出现的位置:bean标签的内部
+            标签的属性:
+                type:用于指定要注入的数据的数据类型,该数据类型也是构造函数中某个或某些参数的类型
+                index:用于指定要注入的数据给构造函数中指定索引位置的参数赋值,索引的位置是从0开始的
+                name:用于指定给构造函数中指定名称的参数赋值(常用)
+
+                ---------------以上三个用于指定给构造函数中的哪个参数赋值--------------------
+
+                value:用于提供基本类型和string类型的数据
+                ref:用于指定其他的bean类型数据.他指的就是在spring的核心容器中出现过的bean对象
+
+                优势:
+                    在获取bean对象时,注入数据是必须的操作,否则对象无法创建成功.
+                弊端:
+                    改变了bean对象的实例化方式,使我们在创建对象时,如果不使用这些数据也必须提供.
+
+        2. 使用set方法提供(常用)
+            * 首先必须有set方法
+            涉及的标签:property
+            出现的位置:bean标签的内部
+            标签的属性:
+                name:用于指定注入时调用的set方法名称
+                value:用于提供基本类型和string类型的数据
+                ref:用于指定其他的bean类型数据.他指的就是在spring的核心容器中出现过的bean对象
+
+            优势:创建对象时没有明确的限制,可以直接使用默认构造函数
+            弊端:如果某个成员必须有值,则获取对象是有可能set方法没有执行
+
+        3. 使用注解提供
+
+* 示例:
+    1. 构造函数注入
+        &lt;bean id=&quot;userDao&quot; class=&quot;com.qin.dao.impl.IUserDaoImpl&quot;&gt;
+            &lt;constructor-arg name=&quot;userName&quot; value=&quot;sakura&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;constructor-arg name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;constructor-arg name=&quot;birthday&quot; ref=&quot;date&quot;&gt;&lt;/constructor-arg&gt;
+        &lt;/bean&gt;
+
+        &lt;bean id=&quot;date&quot; class=&quot;java.util.Date&quot;&gt;&lt;/bean&gt;
+
+    2. 使用set方法注入
+         &lt;bean id=&quot;userDao1&quot; class=&quot;com.qin.dao.impl.IUserDaoImpl1&quot;&gt;
+            &lt;property name=&quot;age&quot; value=&quot;19&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;userName&quot; value=&quot;tom&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;birthday&quot; ref=&quot;date&quot;&gt;&lt;/property&gt;
+        &lt;/bean&gt;
+
+        &lt;bean id=&quot;date&quot; class=&quot;java.util.Date&quot;&gt;&lt;/bean&gt;
+
+    3. 对集合属性进行set方式注入
+        &lt;bean id=&quot;userDao2&quot; class=&quot;com.qin.dao.impl.IUserDaoImpl2&quot;&gt;
+            &lt;property name=&quot;myStrs&quot;&gt;
+                &lt;array&gt;
+                &lt;value&gt;string&lt;/value&gt;
+                &lt;value&gt;string&lt;/value&gt;
+                &lt;value&gt;string&lt;/value&gt;
+                &lt;/array&gt;
+            &lt;/property&gt;
+
+            &lt;property name=&quot;myList&quot;&gt;
+                &lt;list&gt;
+                    &lt;value&gt;list&lt;/value&gt;
+                    &lt;value&gt;list&lt;/value&gt;
+                    &lt;value&gt;list&lt;/value&gt;
+                &lt;/list&gt;
+            &lt;/property&gt;
+            &lt;property name=&quot;mySet&quot;&gt;
+                &lt;set&gt;
+                    &lt;value&gt;set&lt;/value&gt;
+                    &lt;value&gt;set&lt;/value&gt;
+                    &lt;value&gt;set&lt;/value&gt;
+                &lt;/set&gt;
+            &lt;/property&gt;
+            &lt;property name=&quot;myMap&quot;&gt;
+                &lt;map&gt;
+                    &lt;entry key=&quot;map1&quot;&gt;
+                        &lt;value&gt;map1&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry key=&quot;map2&quot; value=&quot;map2&quot;&gt;&lt;/entry&gt;
+                    &lt;entry key=&quot;map3&quot; value=&quot;map3&quot;&gt;&lt;/entry&gt;
+                &lt;/map&gt;
+            &lt;/property&gt;
+            &lt;property name=&quot;myProps&quot;&gt;
+                &lt;props&gt;
+                    &lt;prop key=&quot;prop&quot;&gt;123&lt;/prop&gt;
+                    &lt;prop key=&quot;prop&quot;&gt;123&lt;/prop&gt;
+                    &lt;prop key=&quot;prop&quot;&gt;123&lt;/prop&gt;
+                &lt;/props&gt;
+            &lt;/property&gt;
+        &lt;/bean&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/01_spring中XML形式的IOC/" data-id="cjutkggbs0000pgi9ilocw8my" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/23/02_spring中注解形式的IOC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/23/12_ThreadLocal/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/11_Spring事务控制/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/10_JdbcDaoSupport/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/09_Spring中环绕通知/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/08_动态代理以及Spring的AOP/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
