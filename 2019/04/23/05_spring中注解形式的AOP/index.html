@@ -8,17 +8,17 @@
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
-  <meta name="description" content="Spring�л���ע���AOP1. Ŀ�����     ��������Ķ���         ��:ҵ����AccountServiceImpl 2. ֪ͨ����     ��ɢ�����������п��Գ�ȡ�ɹ��ԵĴ����,������ȡ��Ϊһ����(������־��¼,�������ܼ��) 3. �ں��������п����AOP��֧��     &amp;lt;a">
+  <meta name="description" content="Spring中基于注解的AOP1. 目标对象     即被代理的对象         如:业务层的AccountServiceImpl 2. 通知对象     即散落在其他类中可以抽取成共性的代码块,可以提取成为一个类(比如日志记录,代码性能监控) 3. 在核心配置中开启对AOP的支持     &amp;lt;aop:aspectj-autoproxy&amp;gt;&amp;lt;/aop:aspectj-autopr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sakuraay&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/05_spring中注解形式的AOP/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
-<meta property="og:description" content="Spring�л���ע���AOP1. Ŀ�����     ��������Ķ���         ��:ҵ����AccountServiceImpl 2. ֪ͨ����     ��ɢ�����������п��Գ�ȡ�ɹ��ԵĴ����,������ȡ��Ϊһ����(������־��¼,�������ܼ��) 3. �ں��������п����AOP��֧��     &amp;lt;a">
+<meta property="og:description" content="Spring中基于注解的AOP1. 目标对象     即被代理的对象         如:业务层的AccountServiceImpl 2. 通知对象     即散落在其他类中可以抽取成共性的代码块,可以提取成为一个类(比如日志记录,代码性能监控) 3. 在核心配置中开启对AOP的支持     &amp;lt;aop:aspectj-autoproxy&amp;gt;&amp;lt;/aop:aspectj-autopr">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-28T01:59:24.958Z">
+<meta property="og:updated_time" content="2019-04-25T03:00:30.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sakuraay&#39;s Blog">
-<meta name="twitter:description" content="Spring�л���ע���AOP1. Ŀ�����     ��������Ķ���         ��:ҵ����AccountServiceImpl 2. ֪ͨ����     ��ɢ�����������п��Գ�ȡ�ɹ��ԵĴ����,������ȡ��Ϊһ����(������־��¼,�������ܼ��) 3. �ں��������п����AOP��֧��     &amp;lt;a">
+<meta name="twitter:description" content="Spring中基于注解的AOP1. 目标对象     即被代理的对象         如:业务层的AccountServiceImpl 2. 通知对象     即散落在其他类中可以抽取成共性的代码块,可以提取成为一个类(比如日志记录,代码性能监控) 3. 在核心配置中开启对AOP的支持     &amp;lt;aop:aspectj-autoproxy&amp;gt;&amp;lt;/aop:aspectj-autopr">
   
   
     <link rel="icon" href="/blog.ico">
@@ -115,31 +115,31 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h2 id="Spring�л���ע���AOP"><a href="#Spring�л���ע���AOP" class="headerlink" title="Spring�л���ע���AOP"></a>Spring�л���ע���AOP</h2><pre><code>1. Ŀ�����
-    ��������Ķ���
-        ��:ҵ����AccountServiceImpl
-2. ֪ͨ����
-    ��ɢ�����������п��Գ�ȡ�ɹ��ԵĴ����,������ȡ��Ϊһ����(������־��¼,�������ܼ��)
-3. �ں��������п����AOP��֧��
+            <h2 id="Spring中基于注解的AOP"><a href="#Spring中基于注解的AOP" class="headerlink" title="Spring中基于注解的AOP"></a>Spring中基于注解的AOP</h2><pre><code>1. 目标对象
+    即被代理的对象
+        如:业务层的AccountServiceImpl
+2. 通知对象
+    即散落在其他类中可以抽取成共性的代码块,可以提取成为一个类(比如日志记录,代码性能监控)
+3. 在核心配置中开启对AOP的支持
     &lt;aop:aspectj-autoproxy&gt;&lt;/aop:aspectj-autoproxy&gt;
-4. ʹ��ע����֪ͨ����������
-    4.0 ��ʾ��ǰ����һ��������
+4. 使用注解在通知上配置切面
+    4.0 表示当前类是一个切面类
         @Aspect
-    4.1 �����е�
+    4.1 配置切点
         @Pointcut(&quot;execution(* com.itheima.service.impl.*.update(..))&quot;)
             private void pt1(){}
         @Pointcut(&quot;execution(* com.itheima.service.impl.*.save(..))&quot;)
             private void pt2(){}
-    4.3 �ڷ���������ע��
-        @Before        ǰ��֪ͨ
-        @After            ����֪ͨ
-        @AfterReturning    ����֪ͨ
-        @AfterThrowing    �쳣֪ͨ
-        @Around        ����֪ͨ
+    4.3 在方法上配置注解
+        @Before        前置通知
+        @After            最终通知
+        @AfterReturning    后置通知
+        @AfterThrowing    异常通知
+        @Around        环绕通知
 </code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月28日 09:59</p>
+        <p>最后更新： 2019年04月25日 11:00</p>
         <p>原始链接： <a class="post-url" href="/2019/04/23/05_spring中注解形式的AOP/" title>http://yoursite.com/2019/04/23/05_spring中注解形式的AOP/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -250,7 +250,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring�л���ע���AOP"><span class="post-toc-text">Spring�л���ע���AOP</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring中基于注解的AOP"><span class="post-toc-text">Spring中基于注解的AOP</span></a></li></ol>
         </nav>
     </aside>
     

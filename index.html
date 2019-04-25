@@ -246,13 +246,13 @@
         </div>
         <div class="article-feed">
             <p>
-                Spring�еĻ���֪ͨ:1.����
-    ����:
-        �����������˻���֪֮ͨ��,����㷽��û��ִ��,��֪ͨ����ִ����
-    ����:
-        ͨ���Աȶ�̬����Ļ���֪ͨ����,���ֶ�̬����Ļ���֪ͨ����ȷ������㷽������.�����ǵ�û��
-    ���:
-  ...
+                Spring中的环绕通知:1.概述
+    问题:
+        当我们配置了环绕通知之后,切入点方法没有执行,而通知方法执行了
+    分析:
+        通过对比动态代理的环绕通知代码,发现动态代理的环绕通知有明确的切入点方法调用.而我们的没有
+    解决:
+        Spring框架为我们提供了一个接口,proceedingJoinPoint.该接口有...
             </p>
         </div>
       
@@ -289,17 +289,18 @@
         </div>
         <div class="article-feed">
             <p>
-                ��̬�����ص�: 
-    �ֽ��������洴��,���������
-����:
-    ���޸�Դ��Ļ����϶Է�����ǿ
-����:
-    1. ���ڽӿڵĶ�̬����
-        �漰����:
+                动态代理特点: 
+    字节码随用随创建,随用随加载
+作用:
+    不修改源码的基础上对方法增强
+分类:
+    1. 基于接口的动态代理
+        涉及的类:
             Proxy
-        �ṩ��:
-            jdk�ٷ�
-        ��δ���������...
+        提供者:
+            jdk官方
+        如何创建代理对象:
+            使用Proxy类中的newProxyInst...
             </p>
         </div>
       
@@ -336,13 +337,14 @@
         </div>
         <div class="article-feed">
             <p>
-                Spring����Junit* ����:��spring�е�junit���޷�ʹ�������Ķ���
+                Spring整合Junit* 问题:在spring中的junit中无法使用容器的对象
 
-* ����
-    1. �����������Ҫmain����
-    2. junit�����п��Բ���Ҫmain����,ֻ��ִ����@Testע��ķ���
-    3. junit����������Ƿ����spring���
-   ...
+* 分析
+    1. 程序的运行需要main方法
+    2. junit的运行可以不需要main方法,只是执行了@Test注解的方法
+    3. junit不会管我们是否采用spring框架
+        在执行测试方法时，junit根本不知道我们是不是使用了spring框架
+...
             </p>
         </div>
       
@@ -379,12 +381,13 @@
         </div>
         <div class="article-feed">
             <p>
-                DButils�Ļ���ʹ��1. ��ȡQueryRunner����(�൱��JdbcTemplate)
-    ����(����):
+                DButils的基本使用1. 获取QueryRunner对象(相当于JdbcTemplate)
+    构造(常用):
         QueryRunner runner = new QueryRunner();
         QueryRunner runner = new QueryRunner(param);
-    ����:
-     ...
+    参数:
+        第一个没有参数
+  ...
             </p>
         </div>
       
@@ -421,12 +424,13 @@
         </div>
         <div class="article-feed">
             <p>
-                Spring�л���ע���AOP1. Ŀ�����
-    ��������Ķ���
-        ��:ҵ����AccountServiceImpl
-2. ֪ͨ����
-    ��ɢ�����������п��Գ�ȡ�ɹ��ԵĴ����,������ȡ��Ϊһ����(������־��¼,�������ܼ��)
-3. �ں��������п����AOP��...
+                Spring中基于注解的AOP1. 目标对象
+    即被代理的对象
+        如:业务层的AccountServiceImpl
+2. 通知对象
+    即散落在其他类中可以抽取成共性的代码块,可以提取成为一个类(比如日志记录,代码性能监控)
+3. 在核心配置中开启对AOP的支持
+    &lt;aop:aspectj-autoproxy&gt;&lt;/aop:a...
             </p>
         </div>
       
@@ -463,12 +467,13 @@
         </div>
         <div class="article-feed">
             <p>
-                Spring�л���XML��AOP������1. ��֪ͨbean����Spring������
-2. ʹ��aop:config��ǩ������ʼAOP������
-3. ʹ��aop:aspect��ǩ������ʼ��������
-    id����:�������ṩһ��Ψһ��ʶ
-    ref����:��ָ��֪ͨ��bean��id
-4. ��...
+                Spring中基于XML的AOP的配置1. 把通知bean交给Spring来管理
+2. 使用aop:config标签表明开始AOP的配置
+3. 使用aop:aspect标签表明开始配置切面
+    id属性:给切面提供一个唯一标识
+    ref属性:是指定通知类bean的id
+4. 在aop:aspect标签的内部使用对用的标签来配置通知的类型
+    前置通知:   ...
             </p>
         </div>
       
@@ -505,14 +510,14 @@
         </div>
         <div class="article-feed">
             <p>
-                Spring��ȡ�������ݿ��ļ�1.��ȡ�ļ�:
+                Spring抽取配置数据库文件1.抽取文件:
 jdbcConfig.properties
     jdbc.driver=com.mysql.jdbc.Driver
     jdbc.url=jdbc:mysql://localhost:3306/spring
     jdbc.username=root
     jdbc.password=root
 
-2...
+2. 在Sprin...
             </p>
         </div>
       

@@ -8,17 +8,17 @@
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
-  <meta name="description" content="DButils�Ļ���ʹ��1. ��ȡQueryRunner����(�൱��JdbcTemplate)     ����(����):         QueryRunner runner = new QueryRunner();         QueryRunner runner = new QueryRunner(param);     ����:         ��һ��û�в��">
+  <meta name="description" content="DButils的基本使用1. 获取QueryRunner对象(相当于JdbcTemplate)     构造(常用):         QueryRunner runner = new QueryRunner();         QueryRunner runner = new QueryRunner(param);     参数:         第一个没有参数         第二个的参数是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sakuraay&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/06_DButils的使用/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
-<meta property="og:description" content="DButils�Ļ���ʹ��1. ��ȡQueryRunner����(�൱��JdbcTemplate)     ����(����):         QueryRunner runner = new QueryRunner();         QueryRunner runner = new QueryRunner(param);     ����:         ��һ��û�в��">
+<meta property="og:description" content="DButils的基本使用1. 获取QueryRunner对象(相当于JdbcTemplate)     构造(常用):         QueryRunner runner = new QueryRunner();         QueryRunner runner = new QueryRunner(param);     参数:         第一个没有参数         第二个的参数是">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-26T11:11:40.283Z">
+<meta property="og:updated_time" content="2019-04-25T03:00:09.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sakuraay&#39;s Blog">
-<meta name="twitter:description" content="DButils�Ļ���ʹ��1. ��ȡQueryRunner����(�൱��JdbcTemplate)     ����(����):         QueryRunner runner = new QueryRunner();         QueryRunner runner = new QueryRunner(param);     ����:         ��һ��û�в��">
+<meta name="twitter:description" content="DButils的基本使用1. 获取QueryRunner对象(相当于JdbcTemplate)     构造(常用):         QueryRunner runner = new QueryRunner();         QueryRunner runner = new QueryRunner(param);     参数:         第一个没有参数         第二个的参数是">
   
   
     <link rel="icon" href="/blog.ico">
@@ -115,33 +115,33 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h2 id="DButils�L���ʹ��"><a href="#DButils�L���ʹ��" class="headerlink" title="DButils�Ļ���ʹ��"></a>DButils�Ļ���ʹ��</h2><pre><code>1. ��ȡQueryRunner����(�൱��JdbcTemplate)
-    ����(����):
+            <h2 id="DButils的基本使用"><a href="#DButils的基本使用" class="headerlink" title="DButils的基本使用"></a>DButils的基本使用</h2><pre><code>1. 获取QueryRunner对象(相当于JdbcTemplate)
+    构造(常用):
         QueryRunner runner = new QueryRunner();
         QueryRunner runner = new QueryRunner(param);
-    ����:
-        ��һ��û�в���
-        �ڶ����Ĳ��������ݿ����ӳ�(����ʹ��c3p0/druid)
-2. ִ��sql���
-    ��ɾ��:    runner.update(����ɾ��sql��,�����б�);
-    ��ѯ:   runner.query(����ѯsql��,�������ݣ������б�);
+    参数:
+        第一个没有参数
+        第二个的参数是数据库连接池(可以使用c3p0/druid)
+2. 执行sql语句
+    增删改:    runner.update(“增删改sql”,参数列表);
+    查询:   runner.query(“查询sql”,返回数据，参数列表);
 
-    ��:
+    增:
         runner.update(&quot;insert into account(name,money)values(?,?)&quot;,account.getName(),account.getMoney());
-    ɾ:
+    删:
         runner.update(&quot;delete from account where id = ? &quot;,account.getId())
-    ��:
+    改:
         runner.update(&quot;update account set name = ? and money=? where id = ?&quot;,account.getName(),account.getMoney()
         ,account.getId())
-    ��:
-        ��һ��
+    查:
+        查一个
             runner.query(&quot;select * from account where id = ?&quot;,new BeanHandler&lt;Account&gt;(Account.class),id)
-        ����
+        查多个
             runner.query(&quot;select * from account&quot;, new BeanListHandler&lt;Account&gt;(Account.class))
-        * ע: 
-            һ������ʹ��BeanHandler
-            ��������ʹ��BeanListHandler
-</code></pre><h2 id="DButils��Spring��IOC��Ӧ��"><a href="#DButils��Spring��IOC��Ӧ��" class="headerlink" title="DButils��Spring��IOC��Ӧ��"></a>DButils��Spring��IOC��Ӧ��</h2><pre><code>*����xml������:(����ķ�ʽ����ds)
+        * 注: 
+            一条数据使用BeanHandler
+            多条数据使用BeanListHandler
+</code></pre><h2 id="DButils在Spring中IOC的应用"><a href="#DButils在Spring中IOC的应用" class="headerlink" title="DButils在Spring中IOC的应用"></a>DButils在Spring中IOC的应用</h2><pre><code>*基于xml的配置:(构造的方式传递ds)
 &lt;bean class=&quot;org.apache.commons.dbutils.QueryRunner&quot; id=&quot;queryRunner&quot;&gt;
     &lt;constructor-arg name=&quot;ds&quot; ref=&quot;c3p0DataSource&quot;&gt;&lt;/constructor-arg&gt;
 &lt;/bean&gt;
@@ -154,12 +154,12 @@
 &lt;property name=&quot;password&quot; value=&quot;${jdbc.password&quot;&gt;&lt;/property&gt;
 &lt;/bean&gt;
 
-* ����ע�������
-@Configuration //��Ϊע���ļ���ʶ��
-@PropertySource(&quot;classpath:jdbcConfig.properties&quot;)//����������ݿ������ļ�
-@ComponentScan({&quot;com.qin&quot;,&quot;Config&quot;})    //ɨ���ļ�
+* 基于注解的配置
+@Configuration //作为注解文件被识别
+@PropertySource(&quot;classpath:jdbcConfig.properties&quot;)//拆分引入数据库配置文件
+@ComponentScan({&quot;com.qin&quot;,&quot;Config&quot;})    //扫描文件
 public class SpringConfig {
-    //����jdbc����������
+    //配置jdbc的连接数据
     @Value(&quot;${jdbc.driver}&quot;)
     private String driver;
     @Value(&quot;${jdbc.url}&quot;)
@@ -192,7 +192,7 @@ public class SpringConfig {
 </code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月26日 19:11</p>
+        <p>最后更新： 2019年04月25日 11:00</p>
         <p>原始链接： <a class="post-url" href="/2019/04/23/06_DButils的使用/" title>http://yoursite.com/2019/04/23/06_DButils的使用/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -303,7 +303,7 @@ public class SpringConfig {
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DButils�L���ʹ��"><span class="post-toc-text">DButils�Ļ���ʹ��</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DButils��Spring��IOC��Ӧ��"><span class="post-toc-text">DButils��Spring��IOC��Ӧ��</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DButils的基本使用"><span class="post-toc-text">DButils的基本使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DButils在Spring中IOC的应用"><span class="post-toc-text">DButils在Spring中IOC的应用</span></a></li></ol>
         </nav>
     </aside>
     

@@ -8,17 +8,17 @@
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
-  <meta name="description" content="Spring��ȡ�������ݿ��ļ�1.��ȡ�ļ�: jdbcConfig.properties     jdbc.driver=com.mysql.jdbc.Driver     jdbc.url=jdbc:mysql://localhost:3306/spring     jdbc.username=root     jdbc.password=root  2. ��Spring���">
+  <meta name="description" content="Spring抽取配置数据库文件1.抽取文件: jdbcConfig.properties     jdbc.driver=com.mysql.jdbc.Driver     jdbc.url=jdbc:mysql://localhost:3306/spring     jdbc.username=root     jdbc.password=root  2. 在Spring的配置文件中配置:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sakuraay&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/03_spring抽取配置文件/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
-<meta property="og:description" content="Spring��ȡ�������ݿ��ļ�1.��ȡ�ļ�: jdbcConfig.properties     jdbc.driver=com.mysql.jdbc.Driver     jdbc.url=jdbc:mysql://localhost:3306/spring     jdbc.username=root     jdbc.password=root  2. ��Spring���">
+<meta property="og:description" content="Spring抽取配置数据库文件1.抽取文件: jdbcConfig.properties     jdbc.driver=com.mysql.jdbc.Driver     jdbc.url=jdbc:mysql://localhost:3306/spring     jdbc.username=root     jdbc.password=root  2. 在Spring的配置文件中配置:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-26T11:04:25.175Z">
+<meta property="og:updated_time" content="2019-04-25T03:01:11.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sakuraay&#39;s Blog">
-<meta name="twitter:description" content="Spring��ȡ�������ݿ��ļ�1.��ȡ�ļ�: jdbcConfig.properties     jdbc.driver=com.mysql.jdbc.Driver     jdbc.url=jdbc:mysql://localhost:3306/spring     jdbc.username=root     jdbc.password=root  2. ��Spring���">
+<meta name="twitter:description" content="Spring抽取配置数据库文件1.抽取文件: jdbcConfig.properties     jdbc.driver=com.mysql.jdbc.Driver     jdbc.url=jdbc:mysql://localhost:3306/spring     jdbc.username=root     jdbc.password=root  2. 在Spring的配置文件中配置:">
   
   
     <link rel="icon" href="/blog.ico">
@@ -115,21 +115,21 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h2 id="Spring��ȡ�������ݿ��l�"><a href="#Spring��ȡ�������ݿ��l�" class="headerlink" title="Spring��ȡ�������ݿ��ļ�"></a>Spring��ȡ�������ݿ��ļ�</h2><pre><code>1.��ȡ�ļ�:
+            <h2 id="Spring抽取配置数据库文件"><a href="#Spring抽取配置数据库文件" class="headerlink" title="Spring抽取配置数据库文件"></a>Spring抽取配置数据库文件</h2><pre><code>1.抽取文件:
 jdbcConfig.properties
     jdbc.driver=com.mysql.jdbc.Driver
     jdbc.url=jdbc:mysql://localhost:3306/spring
     jdbc.username=root
     jdbc.password=root
 
-2. ��Spring�������ļ�������:
+2. 在Spring的配置文件中配置:
     &lt;context:property-placeholder location=&quot;jdbcConfig.properties&quot;&gt;&lt;/context:property-placeholder&gt;
-    ʹ��ע�������Ϊ:
+    使用注解的配置为:
         @PropertySource(&quot;classpath:jdbcConfig.properties&quot;)
 
 
-3. ��ԭ���������ļ���ʹ��Spring��el���ʽ
-    ${}����ʾ
+3. 在原来的配置文件中使用Spring的el表达式
+    ${}来表示
     &lt;property name=&quot;driverClass&quot; value=&quot;${jdbc.driver}&quot;&gt;&lt;/property&gt;
     &lt;property name=&quot;jdbcUrl&quot; value=&quot;${jdbc.url}&quot;&gt;&lt;/property&gt;
     &lt;property name=&quot;user&quot; value=&quot;${jdbc.username}&quot;&gt;&lt;/property&gt;
@@ -137,7 +137,7 @@ jdbcConfig.properties
 </code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月26日 19:04</p>
+        <p>最后更新： 2019年04月25日 11:01</p>
         <p>原始链接： <a class="post-url" href="/2019/04/23/03_spring抽取配置文件/" title>http://yoursite.com/2019/04/23/03_spring抽取配置文件/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -248,7 +248,7 @@ jdbcConfig.properties
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring��ȡ�������ݿ��l�"><span class="post-toc-text">Spring��ȡ�������ݿ��ļ�</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring抽取配置数据库文件"><span class="post-toc-text">Spring抽取配置数据库文件</span></a></li></ol>
         </nav>
     </aside>
     

@@ -8,17 +8,17 @@
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
-  <meta name="description" content="Spring����Junit* ����:��spring�е�junit���޷�ʹ�������Ķ���  * ����     1. �����������Ҫmain����     2. junit�����п��Բ���Ҫmain����,ֻ��ִ����@Testע��ķ���     3. junit����������Ƿ����spring���         ��ִ�в��Է">
+  <meta name="description" content="Spring整合Junit* 问题:在spring中的junit中无法使用容器的对象  * 分析     1. 程序的运行需要main方法     2. junit的运行可以不需要main方法,只是执行了@Test注解的方法     3. junit不会管我们是否采用spring框架         在执行测试方法时，junit根本不知道我们是不是使用了spring框架         所以也就不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sakuraay&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/07_spring整合junit/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
-<meta property="og:description" content="Spring����Junit* ����:��spring�е�junit���޷�ʹ�������Ķ���  * ����     1. �����������Ҫmain����     2. junit�����п��Բ���Ҫmain����,ֻ��ִ����@Testע��ķ���     3. junit����������Ƿ����spring���         ��ִ�в��Է">
+<meta property="og:description" content="Spring整合Junit* 问题:在spring中的junit中无法使用容器的对象  * 分析     1. 程序的运行需要main方法     2. junit的运行可以不需要main方法,只是执行了@Test注解的方法     3. junit不会管我们是否采用spring框架         在执行测试方法时，junit根本不知道我们是不是使用了spring框架         所以也就不">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-26T10:43:02.220Z">
+<meta property="og:updated_time" content="2019-04-25T02:59:55.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sakuraay&#39;s Blog">
-<meta name="twitter:description" content="Spring����Junit* ����:��spring�е�junit���޷�ʹ�������Ķ���  * ����     1. �����������Ҫmain����     2. junit�����п��Բ���Ҫmain����,ֻ��ִ����@Testע��ķ���     3. junit����������Ƿ����spring���         ��ִ�в��Է">
+<meta name="twitter:description" content="Spring整合Junit* 问题:在spring中的junit中无法使用容器的对象  * 分析     1. 程序的运行需要main方法     2. junit的运行可以不需要main方法,只是执行了@Test注解的方法     3. junit不会管我们是否采用spring框架         在执行测试方法时，junit根本不知道我们是不是使用了spring框架         所以也就不">
   
   
     <link rel="icon" href="/blog.ico">
@@ -115,37 +115,37 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h2 id="Spring����Junit"><a href="#Spring����Junit" class="headerlink" title="Spring����Junit"></a>Spring����Junit</h2><pre><code>* ����:��spring�е�junit���޷�ʹ�������Ķ���
+            <h2 id="Spring整合Junit"><a href="#Spring整合Junit" class="headerlink" title="Spring整合Junit"></a>Spring整合Junit</h2><pre><code>* 问题:在spring中的junit中无法使用容器的对象
 
-* ����
-    1. �����������Ҫmain����
-    2. junit�����п��Բ���Ҫmain����,ֻ��ִ����@Testע��ķ���
-    3. junit����������Ƿ����spring���
-        ��ִ�в��Է���ʱ��junit������֪�������ǲ���ʹ����spring���
-        ����Ҳ�Ͳ���Ϊ���Ƕ�ȡ�����ļ�/�����ഴ��spring��������
-* ����:
-    �����Է���ִ��ʱ��û��Ioc����������д��Autowiredע�⣬Ҳ�޷�ʵ��ע��
+* 分析
+    1. 程序的运行需要main方法
+    2. junit的运行可以不需要main方法,只是执行了@Test注解的方法
+    3. junit不会管我们是否采用spring框架
+        在执行测试方法时，junit根本不知道我们是不是使用了spring框架
+        所以也就不会为我们读取配置文件/配置类创建spring核心容器
+* 结论:
+    当测试方法执行时，没有Ioc容器，就算写了Autowired注解，也无法实现注入
 
-* ����취:
-    1. ����spring����junit��jar(����) spring-test 
-    2. ʹ��junit�ṩ��һ��ע���ԭ�е�main�����滻��,�滻��spring���ṩ��
+* 解决办法:
+    1. 导入spring整合junit的jar(坐标) spring-test 
+    2. 使用junit提供的一个注解把原有的main方法替换了,替换成spring中提供的
         @RunWith:
             @RunWith(SpringJUnit4ClassRunner.class)
-    3. ��֪spring��������,spring��ioc�����ǻ���xml���ǻ���ע���.����˵��λ��
+    3. 告知spring的运行器,spring和ioc创建是基于xml还是基于注解的.并且说明位置
         @ContextConfiguration
-            location:ָ��xml�ļ���λ��,����classpath�ؼ���,��ʾ����·����
+            location:指定xml文件的位置,加上classpath关键字,表示在类路径下
                 @ContextConfiguration(locations = &quot;classpath:ApplicationContext.xml&quot;)
-            classes:ָ��ע�������ڵ�λ��
+            classes:指定注解类所在的位置
                 @ContextConfiguration(classes = SpringConfig.class)
 
-        * ������ʹ��spring5�汾��ʱ��,Ҫ��junit��jar��������4.1.2�Լ�����
+        * 当我们使用spring5版本的时候,要求junit的jar包必须是4.1.2以及以上
 
-    4. ��ʹ�õ�ʱ��ֱ���ڱ����ϼ�@Autowiredע��Ϳ���
+    4. 在使用的时候直接在变量上加@Autowired注解就可以
 
-* ��:
+* 例:
     @RunWith(SpringJUnit4ClassRunner.class)
-    //@ContextConfiguration(locations=&quot;classpath:ApplicationContext.xml&quot;)//����xml
-    @ContextConfiguration(classes = SpringConfig.class)//����ע��
+    //@ContextConfiguration(locations=&quot;classpath:ApplicationContext.xml&quot;)//基于xml
+    @ContextConfiguration(classes = SpringConfig.class)//基于注解
     public class SpringJunit {
         @Autowired
         private IAccountService service;
@@ -160,7 +160,7 @@
 </code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月26日 18:43</p>
+        <p>最后更新： 2019年04月25日 10:59</p>
         <p>原始链接： <a class="post-url" href="/2019/04/23/07_spring整合junit/" title>http://yoursite.com/2019/04/23/07_spring整合junit/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -271,7 +271,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring����Junit"><span class="post-toc-text">Spring����Junit</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring整合Junit"><span class="post-toc-text">Spring整合Junit</span></a></li></ol>
         </nav>
     </aside>
     
