@@ -3,22 +3,22 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>ThreadLocal | Sakuraay&#39;s Blog</title>
+  <title>about | Sakuraay&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
-  <meta name="description" content="ThreadLocal概述:     ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。 方法:     1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。     2. ThreadLocal.set: 设置ThreadLocal">
+  <meta name="description" content="���������� WEB ��������Ҫ�������� JAVA����Ϥʹ�� SpringBoot��SpringCloud��SpringData��Mybatis ��������ܣ��� Spring ���ж��ӣ���һ���Ĵ����񱡣 ���������ǰ�������ݿ��ȼ��������˽⡣ �Ȱ���Դ��Ŀ���Ȱ��¼������Ȱ��������� ��">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ThreadLocal">
-<meta property="og:url" content="http://yoursite.com/2019/04/23/12_ThreadLocal/index.html">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://yoursite.com/2019/04/25/about/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
-<meta property="og:description" content="ThreadLocal概述:     ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。 方法:     1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。     2. ThreadLocal.set: 设置ThreadLocal">
+<meta property="og:description" content="���������� WEB ��������Ҫ�������� JAVA����Ϥʹ�� SpringBoot��SpringCloud��SpringData��Mybatis ��������ܣ��� Spring ���ж��ӣ���һ���Ĵ����񱡣 ���������ǰ�������ݿ��ȼ��������˽⡣ �Ȱ���Դ��Ŀ���Ȱ��¼������Ȱ��������� ��">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-25T08:12:20.735Z">
+<meta property="og:updated_time" content="2019-04-25T08:41:27.631Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ThreadLocal">
-<meta name="twitter:description" content="ThreadLocal概述:     ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。 方法:     1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。     2. ThreadLocal.set: 设置ThreadLocal">
+<meta name="twitter:title" content="about">
+<meta name="twitter:description" content="���������� WEB ��������Ҫ�������� JAVA����Ϥʹ�� SpringBoot��SpringCloud��SpringData��Mybatis ��������ܣ��� Spring ���ж��ӣ���һ���Ĵ����񱡣 ���������ǰ�������ݿ��ȼ��������˽⡣ �Ȱ���Դ��Ŀ���Ȱ��¼������Ȱ��������� ��">
   
   
     <link rel="icon" href="/blog.ico">
@@ -106,20 +106,20 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-12_ThreadLocal" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-about" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      ThreadLocal
+      about
     </h1>
     <div class="post-title-bar">
       <ul>
           
         <li>
-          <i class="fa fa-calendar"></i>  2019-04-23
+          <i class="fa fa-calendar"></i>  2019-04-25
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -135,23 +135,28 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><pre><code>概述:
-    ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。
-方法:
-    1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。
-    2. ThreadLocal.set: 设置ThreadLocal中当前线程共享变量的值。
-    3. ThreadLocal.remove: 移除ThreadLocal中当前线程共享变量的值。
-    4. ThreadLocal.initialValue: ThreadLocal没有被当前线程赋值时或当前线程刚调用remove方法后调用get方法，返回此方法值。
+            <h3 id="������"><a href="#������" class="headerlink" title="������"></a>������</h3><p>���� WEB ��������Ҫ�������� <code>JAVA</code>����Ϥʹ�� <code>SpringBoot</code>��<code>SpringCloud</code>��<code>SpringData</code>��<code>Mybatis</code> ��������ܣ��� <code>Spring</code> ���ж��ӣ���һ���Ĵ����񱡣</p>
+<p>��<code>�����</code>��<code>ǰ��</code>��<code>���ݿ�</code>�ȼ��������˽⡣</p>
+<p>�Ȱ�<code>��Դ��Ŀ</code>���Ȱ�<code>�¼���</code>���Ȱ�<code>������</code>��</p>
+<h3 id="���ڹ���"><a href="#���ڹ���" class="headerlink" title="���ڹ���"></a>���ڹ���</h3><p>���У�<code>֣��</code></p>
+<h3 id="����ѧϰ"><a href="#����ѧϰ" class="headerlink" title="����ѧϰ"></a>����ѧϰ</h3><p>ѧϰ����ֹ����…<br>����ѧϰ����ǰ�˿�ܵ�ʹ�ã�LayUI��ElementUI��</p>
+<h3 id="����������"><a href="#����������" class="headerlink" title="����������"></a>����������</h3><blockquote>
+<p>��һ���������ʱ����ʮ��ǰ����������ڡ�</p>
+</blockquote>
+<h3 id="���ڰ���"><a href="#���ڰ���" class="headerlink" title="���ڰ���"></a>���ڰ���</h3><p>�Ȱ�<code>�˶�</code>������ϲ��<code>�Ķ�</code>��<code>��Ӱ��Top250��</code>��<code>����</code>��</p>
+<h3 id="��ϵ��"><a href="#��ϵ��" class="headerlink" title="��ϵ��"></a>��ϵ��</h3><ul>
+<li>Home: <a href="https://sakuraay.github.io" target="_blank" rel="noopener">sakuraay.com</a></li>
+<li>Blog: <a href="https://sakuraay.github.io" target="_blank" rel="noopener">blog.sakuraay.com</a></li>
+<li>Email: <a href="mailto:sakuraay0@gmail.com" target="_blank" rel="noopener">sakuraay0@gmail.com</a></li>
+<li>GitHub: <a href="https://github.com/sakuraay" target="_blank" rel="noopener">Sakuraay</a></li>
+<li>WeiBo: <a href="http://weibo.com/u/3953674543" target="_blank" rel="noopener">һ���з�</a></li>
+<li>CSDN: <a href="https://blog.csdn.net/qq_35472880" target="_blank" rel="noopener">һ���з�</a></li>
+</ul>
 
-分析:
-    1. 每个Thread线程内部都有一个Map。
-    2. Map里面存储线程本地对象（key）和线程的变量副本（value）但是，Thread内部的Map是由ThreadLocal维护的，由ThreadLocal负责向map获取和设置线程的变量值。
-    3. 所以对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰。
-</code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年04月25日 16:12</p>
-        <p>原始链接： <a class="post-url" href="/2019/04/23/12_ThreadLocal/" title="ThreadLocal">http://yoursite.com/2019/04/23/12_ThreadLocal/</a></p>
+        <p>最后更新： 2019年04月25日 16:41</p>
+        <p>原始链接： <a class="post-url" href="/2019/04/25/about/" title="about">http://yoursite.com/2019/04/25/about/</a></p>
         <footer>
             <a href="http://yoursite.com">
                 <img src="/images/Troye.jpeg" alt="Sakuraay">
@@ -208,7 +213,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/12_ThreadLocal/&title=《ThreadLocal》 — Sakuraay's Blog&pic=//sakuraay.github.io/images/default.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/25/about/&title=《about》 — Sakuraay's Blog&pic=http://yoursite.comimages/Troye.jpeg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -218,22 +223,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/12_ThreadLocal/&title=《ThreadLocal》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/25/about/&title=《about》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/04/23/12_ThreadLocal/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/04/25/about/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ThreadLocal》 — Sakuraay's Blog&url=http://yoursite.com/2019/04/23/12_ThreadLocal/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《about》 — Sakuraay's Blog&url=http://yoursite.com/2019/04/25/about/&via=http://yoursite.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/04/23/12_ThreadLocal/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/04/25/about/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -243,7 +248,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/04/23/12_ThreadLocal/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/04/25/about/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -261,26 +266,16 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ThreadLocal"><span class="post-toc-text">ThreadLocal</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#������"><span class="post-toc-text">������</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#���ڹ���"><span class="post-toc-text">���ڹ���</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#����ѧϰ"><span class="post-toc-text">����ѧϰ</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#����������"><span class="post-toc-text">����������</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#���ڰ���"><span class="post-toc-text">���ڰ���</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#��ϵ��"><span class="post-toc-text">��ϵ��</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2019/04/25/about/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          about
-        
-      </span>
-    </a>
   
-  
-    <a href="/2019/04/23/11_Spring事务控制/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Spring事务控制</span>
+    <a href="/2019/04/23/12_ThreadLocal/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">ThreadLocal</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
