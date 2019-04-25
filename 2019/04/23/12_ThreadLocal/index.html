@@ -3,22 +3,22 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Sakuraay&#39;s Blog</title>
+  <title>ThreadLocal | Sakuraay&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
-  <meta name="description" content="title: ThreadLocaldate: 2019-04-20categories: Firstauthor: Sakuraaytags: - java - Thead cover_picture: /images/default.jpg Sakuraay-This is a summary">
+  <meta name="description" content="ThreadLocal概述:     ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。 方法:     1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。     2. ThreadLocal.set: 设置ThreadLocal">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sakuraay&#39;s Blog">
+<meta property="og:title" content="ThreadLocal">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/12_ThreadLocal/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
-<meta property="og:description" content="title: ThreadLocaldate: 2019-04-20categories: Firstauthor: Sakuraaytags: - java - Thead cover_picture: /images/default.jpg Sakuraay-This is a summary">
+<meta property="og:description" content="ThreadLocal概述:     ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。 方法:     1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。     2. ThreadLocal.set: 设置ThreadLocal">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-25T07:58:52.786Z">
+<meta property="og:updated_time" content="2019-04-25T08:12:20.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sakuraay&#39;s Blog">
-<meta name="twitter:description" content="title: ThreadLocaldate: 2019-04-20categories: Firstauthor: Sakuraaytags: - java - Thead cover_picture: /images/default.jpg Sakuraay-This is a summary">
+<meta name="twitter:title" content="ThreadLocal">
+<meta name="twitter:description" content="ThreadLocal概述:     ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。 方法:     1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。     2. ThreadLocal.set: 设置ThreadLocal">
   
   
     <link rel="icon" href="/blog.ico">
@@ -109,18 +109,49 @@
         <section id="main" class="body-wrap"><article id="post-12_ThreadLocal" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      ThreadLocal
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-04-23
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>title: ThreadLocal<br>date: 2019-04-20<br>categories: First<br>author: Sakuraay<br>tags:</p>
-<pre><code>- java
-- Thead
-</code></pre><h2 id="cover-picture-images-default-jpg"><a href="#cover-picture-images-default-jpg" class="headerlink" title="cover_picture: /images/default.jpg"></a>cover_picture: /images/default.jpg</h2><p> Sakuraay-This is a summary<br><a id="more"></a></p>
+            <h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><pre><code>概述:
+    ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。
+方法:
+    1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。
+    2. ThreadLocal.set: 设置ThreadLocal中当前线程共享变量的值。
+    3. ThreadLocal.remove: 移除ThreadLocal中当前线程共享变量的值。
+    4. ThreadLocal.initialValue: ThreadLocal没有被当前线程赋值时或当前线程刚调用remove方法后调用get方法，返回此方法值。
 
+分析:
+    1. 每个Thread线程内部都有一个Map。
+    2. Map里面存储线程本地对象（key）和线程的变量副本（value）但是，Thread内部的Map是由ThreadLocal维护的，由ThreadLocal负责向map获取和设置线程的变量值。
+    3. 所以对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰。
+</code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年04月25日 15:58</p>
-        <p>原始链接： <a class="post-url" href="/2019/04/23/12_ThreadLocal/" title>http://yoursite.com/2019/04/23/12_ThreadLocal/</a></p>
+        <p>最后更新： 2019年04月25日 16:12</p>
+        <p>原始链接： <a class="post-url" href="/2019/04/23/12_ThreadLocal/" title="ThreadLocal">http://yoursite.com/2019/04/23/12_ThreadLocal/</a></p>
         <footer>
             <a href="http://yoursite.com">
                 <img src="/images/Troye.jpeg" alt="Sakuraay">
@@ -177,7 +208,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/12_ThreadLocal/&title=Sakuraay's Blog&pic=http://yoursite.comimages/Troye.jpeg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/12_ThreadLocal/&title=《ThreadLocal》 — Sakuraay's Blog&pic=//sakuraay.github.io/images/default.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -187,8 +218,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/12_ThreadLocal/&title=Sakuraay's Blog&source=title: ThreadLocaldate: 2019-04-20categories: Firstauthor: Sakuraaytags:
-- ja..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/12_ThreadLocal/&title=《ThreadLocal》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -198,7 +228,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Sakuraay's Blog&url=http://yoursite.com/2019/04/23/12_ThreadLocal/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ThreadLocal》 — Sakuraay's Blog&url=http://yoursite.com/2019/04/23/12_ThreadLocal/&via=http://yoursite.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -231,7 +261,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#cover-picture-images-default-jpg"><span class="post-toc-text">cover_picture: /images/default.jpg</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ThreadLocal"><span class="post-toc-text">ThreadLocal</span></a></li></ol>
         </nav>
     </aside>
     

@@ -110,21 +110,33 @@
     <article id="post-12_ThreadLocal" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/23/12_ThreadLocal/">ThreadLocal</a>
+    </h1>
+  
+
+          
+      </header>
+    
     <div class="article-entry " itemprop="articleBody">
       
         <div class="article-img">
             <a href="/2019/04/23/12_ThreadLocal/">
                 
-                <img src="http://yoursite.com/images/default.jpg" alt title>
+                <img src="//sakuraay.github.io/images/default.jpg" alt="ThreadLocal" title="ThreadLocal">
                 
             </a>
         </div>
         <div class="article-feed">
             <p>
-                </p><p>title: ThreadLocal<br>date: 2019-04-20<br>categories: First<br>author: Sakuraay<br>tags:</p>
-<pre><code>- java
-- Thead
-</code></pre><h2 id="cover-picture-images-default-jpg"><a href="#cover-picture-images-default-jpg" class="headerlink" title="cover_picture: /images/default.jpg"></a>cover_picture: /images/default.jpg</h2><p> Sakuraay-This is a summary<br>
+                ThreadLocal概述:
+    ThreadLocal用于保存某个线程共享变量：对于同一个static ThreadLocal，不同线程只能从中get，set，remove自己的变量，而不会影响其他线程的变量。
+方法:
+    1. ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。
+    2. ThreadLocal.set: ...
             </p>
         </div>
       
