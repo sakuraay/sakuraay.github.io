@@ -3,21 +3,21 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Sakuraay&#39;s Blog</title>
+  <title>动态代理及Spring中的AOP | Sakuraay&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
   <meta name="description" content="动态代理特点:      字节码随用随创建,随用随加载 作用:     不修改源码的基础上对方法增强 分类:     1. 基于接口的动态代理         涉及的类:             Proxy         提供者:             jdk官方         如何创建代理对象:             使用Proxy类中的newProxyInstance方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sakuraay&#39;s Blog">
+<meta property="og:title" content="动态代理及Spring中的AOP">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
 <meta property="og:description" content="动态代理特点:      字节码随用随创建,随用随加载 作用:     不修改源码的基础上对方法增强 分类:     1. 基于接口的动态代理         涉及的类:             Proxy         提供者:             jdk官方         如何创建代理对象:             使用Proxy类中的newProxyInstance方法">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-25T02:59:40.677Z">
+<meta property="og:updated_time" content="2019-04-25T08:24:43.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sakuraay&#39;s Blog">
+<meta name="twitter:title" content="动态代理及Spring中的AOP">
 <meta name="twitter:description" content="动态代理特点:      字节码随用随创建,随用随加载 作用:     不修改源码的基础上对方法增强 分类:     1. 基于接口的动态代理         涉及的类:             Proxy         提供者:             jdk官方         如何创建代理对象:             使用Proxy类中的newProxyInstance方法">
   
   
@@ -108,6 +108,29 @@
       <div class="outer">
         <section id="main" class="body-wrap"><article id="post-08_动态代理以及Spring的AOP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      动态代理及Spring中的AOP
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-04-23
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
     
     <div class="article-entry post-content" itemprop="articleBody">
       
@@ -207,8 +230,8 @@ AOP相关术语:
 </code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年04月25日 10:59</p>
-        <p>原始链接： <a class="post-url" href="/2019/04/23/08_动态代理以及Spring的AOP/" title>http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/</a></p>
+        <p>最后更新： 2019年04月25日 16:24</p>
+        <p>原始链接： <a class="post-url" href="/2019/04/23/08_动态代理以及Spring的AOP/" title="动态代理及Spring中的AOP">http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/</a></p>
         <footer>
             <a href="http://yoursite.com">
                 <img src="/images/Troye.jpeg" alt="Sakuraay">
@@ -265,7 +288,7 @@ AOP相关术语:
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&title=Sakuraay's Blog&pic=http://yoursite.comimages/Troye.jpeg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&title=《动态代理及Spring中的AOP》 — Sakuraay's Blog&pic=//sakuraay.github.io/images/default.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -275,7 +298,7 @@ AOP相关术语:
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&title=Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&title=《动态代理及Spring中的AOP》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -285,7 +308,7 @@ AOP相关术语:
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Sakuraay's Blog&url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《动态代理及Spring中的AOP》 — Sakuraay's Blog&url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&via=http://yoursite.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -330,14 +353,14 @@ AOP相关术语:
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          (no title)
+          Spring中的环绕通知
         
       </span>
     </a>
   
   
     <a href="/2019/04/23/07_spring整合junit/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title"></span>
+      <span class="article-nav-title">Spring整合Junit</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   

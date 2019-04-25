@@ -3,21 +3,21 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Sakuraay&#39;s Blog</title>
+  <title>Spring中的环绕通知 | Sakuraay&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
   <meta name="description" content="Spring中的环绕通知:1.概述     问题:         当我们配置了环绕通知之后,切入点方法没有执行,而通知方法执行了     分析:         通过对比动态代理的环绕通知代码,发现动态代理的环绕通知有明确的切入点方法调用.而我们的没有     解决:         Spring框架为我们提供了一个接口,proceedingJoinPoint.该接口有一个方法proceed()">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sakuraay&#39;s Blog">
+<meta property="og:title" content="Spring中的环绕通知">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/09_Spring中环绕通知/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
 <meta property="og:description" content="Spring中的环绕通知:1.概述     问题:         当我们配置了环绕通知之后,切入点方法没有执行,而通知方法执行了     分析:         通过对比动态代理的环绕通知代码,发现动态代理的环绕通知有明确的切入点方法调用.而我们的没有     解决:         Spring框架为我们提供了一个接口,proceedingJoinPoint.该接口有一个方法proceed()">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-25T02:59:20.521Z">
+<meta property="og:updated_time" content="2019-04-25T08:24:56.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sakuraay&#39;s Blog">
+<meta name="twitter:title" content="Spring中的环绕通知">
 <meta name="twitter:description" content="Spring中的环绕通知:1.概述     问题:         当我们配置了环绕通知之后,切入点方法没有执行,而通知方法执行了     分析:         通过对比动态代理的环绕通知代码,发现动态代理的环绕通知有明确的切入点方法调用.而我们的没有     解决:         Spring框架为我们提供了一个接口,proceedingJoinPoint.该接口有一个方法proceed()">
   
   
@@ -109,6 +109,29 @@
         <section id="main" class="body-wrap"><article id="post-09_Spring中环绕通知" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Spring中的环绕通知
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-04-23
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
     <div class="article-entry post-content" itemprop="articleBody">
       
             
@@ -194,8 +217,8 @@
 </code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年04月25日 10:59</p>
-        <p>原始链接： <a class="post-url" href="/2019/04/23/09_Spring中环绕通知/" title>http://yoursite.com/2019/04/23/09_Spring中环绕通知/</a></p>
+        <p>最后更新： 2019年04月25日 16:24</p>
+        <p>原始链接： <a class="post-url" href="/2019/04/23/09_Spring中环绕通知/" title="Spring中的环绕通知">http://yoursite.com/2019/04/23/09_Spring中环绕通知/</a></p>
         <footer>
             <a href="http://yoursite.com">
                 <img src="/images/Troye.jpeg" alt="Sakuraay">
@@ -252,7 +275,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/09_Spring中环绕通知/&title=Sakuraay's Blog&pic=http://yoursite.comimages/Troye.jpeg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/09_Spring中环绕通知/&title=《Spring中的环绕通知》 — Sakuraay's Blog&pic=//sakuraay.github.io/images/default.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -262,7 +285,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/09_Spring中环绕通知/&title=Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/09_Spring中环绕通知/&title=《Spring中的环绕通知》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -272,7 +295,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Sakuraay's Blog&url=http://yoursite.com/2019/04/23/09_Spring中环绕通知/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring中的环绕通知》 — Sakuraay's Blog&url=http://yoursite.com/2019/04/23/09_Spring中环绕通知/&via=http://yoursite.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -317,14 +340,14 @@
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          (no title)
+          从Spring容器获取jdbc对象
         
       </span>
     </a>
   
   
     <a href="/2019/04/23/08_动态代理以及Spring的AOP/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title"></span>
+      <span class="article-nav-title">动态代理及Spring中的AOP</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   

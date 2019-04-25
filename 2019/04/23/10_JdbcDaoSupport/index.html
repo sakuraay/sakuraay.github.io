@@ -3,21 +3,21 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Sakuraay&#39;s Blog</title>
+  <title>从Spring容器获取jdbc对象 | Sakuraay&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Sakuraay,Sakuraay's Blog">
   
   <meta name="description" content="从Spring容器获取JdbcTemplate对象Spring为我们提供了一个JdbcDaoSupport类,我们的dao实现类可以通过继承来获取JdbcTemplate. 使用步骤:         1. dao中的实现类继承JdbcDaoSupport         2. 通过getJdbcTemplate()或者加上this/super来直接获取一个JdbcTemplate对象来使用  使">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sakuraay&#39;s Blog">
+<meta property="og:title" content="从Spring容器获取jdbc对象">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/10_JdbcDaoSupport/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
 <meta property="og:description" content="从Spring容器获取JdbcTemplate对象Spring为我们提供了一个JdbcDaoSupport类,我们的dao实现类可以通过继承来获取JdbcTemplate. 使用步骤:         1. dao中的实现类继承JdbcDaoSupport         2. 通过getJdbcTemplate()或者加上this/super来直接获取一个JdbcTemplate对象来使用  使">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-28T06:39:10.639Z">
+<meta property="og:updated_time" content="2019-04-25T08:25:43.419Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sakuraay&#39;s Blog">
+<meta name="twitter:title" content="从Spring容器获取jdbc对象">
 <meta name="twitter:description" content="从Spring容器获取JdbcTemplate对象Spring为我们提供了一个JdbcDaoSupport类,我们的dao实现类可以通过继承来获取JdbcTemplate. 使用步骤:         1. dao中的实现类继承JdbcDaoSupport         2. 通过getJdbcTemplate()或者加上this/super来直接获取一个JdbcTemplate对象来使用  使">
   
   
@@ -109,6 +109,29 @@
         <section id="main" class="body-wrap"><article id="post-10_JdbcDaoSupport" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      从Spring容器获取jdbc对象
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-04-23
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
     <div class="article-entry post-content" itemprop="articleBody">
       
             
@@ -145,8 +168,8 @@
 </code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月28日 14:39</p>
-        <p>原始链接： <a class="post-url" href="/2019/04/23/10_JdbcDaoSupport/" title>http://yoursite.com/2019/04/23/10_JdbcDaoSupport/</a></p>
+        <p>最后更新： 2019年04月25日 16:25</p>
+        <p>原始链接： <a class="post-url" href="/2019/04/23/10_JdbcDaoSupport/" title="从Spring容器获取jdbc对象">http://yoursite.com/2019/04/23/10_JdbcDaoSupport/</a></p>
         <footer>
             <a href="http://yoursite.com">
                 <img src="/images/Troye.jpeg" alt="Sakuraay">
@@ -203,7 +226,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/10_JdbcDaoSupport/&title=Sakuraay's Blog&pic=http://yoursite.comimages/Troye.jpeg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/10_JdbcDaoSupport/&title=《从Spring容器获取jdbc对象》 — Sakuraay's Blog&pic=//sakuraay.github.io/images/default.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -213,7 +236,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/10_JdbcDaoSupport/&title=Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/10_JdbcDaoSupport/&title=《从Spring容器获取jdbc对象》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -223,7 +246,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Sakuraay's Blog&url=http://yoursite.com/2019/04/23/10_JdbcDaoSupport/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《从Spring容器获取jdbc对象》 — Sakuraay's Blog&url=http://yoursite.com/2019/04/23/10_JdbcDaoSupport/&via=http://yoursite.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -268,14 +291,14 @@
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          Spring事务
+          Spring事务控制
         
       </span>
     </a>
   
   
     <a href="/2019/04/23/09_Spring中环绕通知/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title"></span>
+      <span class="article-nav-title">Spring中的环绕通知</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
