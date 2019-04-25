@@ -11,7 +11,7 @@
   <meta name="description" content="动态代理特点:      字节码随用随创建,随用随加载 作用:     不修改源码的基础上对方法增强 分类:     1. 基于接口的动态代理         涉及的类:             Proxy         提供者:             jdk官方         如何创建代理对象:             使用Proxy类中的newProxyInstance方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态代理及Spring中的AOP">
-<meta property="og:url" content="http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/index.html">
+<meta property="og:url" content="https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/index.html">
 <meta property="og:site_name" content="Sakuraay&#39;s Blog">
 <meta property="og:description" content="动态代理特点:      字节码随用随创建,随用随加载 作用:     不修改源码的基础上对方法增强 分类:     1. 基于接口的动态代理         涉及的类:             Proxy         提供者:             jdk官方         如何创建代理对象:             使用Proxy类中的newProxyInstance方法">
 <meta property="og:locale" content="default">
@@ -231,9 +231,9 @@ AOP相关术语:
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2019年04月25日 16:24</p>
-        <p>原始链接： <a class="post-url" href="/2019/04/23/08_动态代理以及Spring的AOP/" title="动态代理及Spring中的AOP">http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/</a></p>
+        <p>原始链接： <a class="post-url" href="/2019/04/23/08_动态代理以及Spring的AOP/" title="动态代理及Spring中的AOP">https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/</a></p>
         <footer>
-            <a href="http://yoursite.com">
+            <a href="https://sakuraay.github.io">
                 <img src="/images/Troye.jpeg" alt="Sakuraay">
                 Sakuraay
             </a>
@@ -288,7 +288,7 @@ AOP相关术语:
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&title=《动态代理及Spring中的AOP》 — Sakuraay's Blog&pic=//sakuraay.github.io/images/default.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/&title=《动态代理及Spring中的AOP》 — Sakuraay's Blog&pic=//sakuraay.github.io/images/default.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -298,22 +298,22 @@ AOP相关术语:
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&title=《动态代理及Spring中的AOP》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/&title=《动态代理及Spring中的AOP》 — Sakuraay's Blog&source=种一棵树的最好时间是十年前，其次是现在。" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《动态代理及Spring中的AOP》 — Sakuraay's Blog&url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《动态代理及Spring中的AOP》 — Sakuraay's Blog&url=https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/&via=https://sakuraay.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -323,7 +323,7 @@ AOP相关术语:
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/04/23/08_动态代理以及Spring的AOP/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://sakuraay.github.io/2019/04/23/08_动态代理以及Spring的AOP/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -398,7 +398,7 @@ AOP相关术语:
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
   var mihoConfig = {
-      root: "http://yoursite.com",
+      root: "https://sakuraay.github.io",
       animate: true,
       isHome: false,
       share: true,
